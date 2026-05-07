@@ -1,0 +1,290 @@
+.weather-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: 2rem;
+  padding: 1.75rem;
+  box-shadow: var(--glass-shadow), inset 0 0 0 1px hsla(0, 0%, 100%, 0.1);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+[data-theme='dark'] .weather-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow), inset 0 0 0 1px hsla(0, 0%, 100%, 0.05);
+}
+
+.weather-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Condition Specific Highlights */
+.weather-card.cond-clear-sky::after,
+.weather-card.cond-sunny::after {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, hsla(45, 100%, 60%, 0.15) 0%, transparent 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.weather-card.cond-rainy::after,
+.weather-card.cond-slight-rain::after {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  left: -10%;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, hsla(210, 100%, 60%, 0.1) 0%, transparent 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.city-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+
+.card-country {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
+
+.card-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.favorite-btn, .delete-city-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: hsla(0, 0%, 100%, 0.15);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  color: var(--text-muted);
+}
+
+[data-theme='dark'] .favorite-btn, 
+[data-theme='dark'] .delete-city-btn {
+  background: hsla(0, 0%, 0%, 0.2);
+}
+
+.favorite-btn:hover {
+  background: hsla(45, 100%, 50%, 0.15);
+  color: var(--accent-yellow);
+  transform: rotate(15deg) scale(1.1);
+}
+
+.delete-city-btn:hover {
+  background: hsla(0, 80%, 60%, 0.1);
+  color: #ef4444;
+  transform: rotate(-15deg) scale(1.1);
+}
+
+.favorite-btn.active {
+  color: var(--accent-yellow);
+  background: hsla(45, 100%, 50%, 0.1);
+  border-color: hsla(45, 100%, 50%, 0.3);
+}
+
+.card-body {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.weather-image-container {
+  width: 90px;
+  height: 90px;
+  border-radius: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 2px solid hsla(0, 0%, 100%, 0.8);
+  transition: transform 0.5s cubic-bezier(0.2, 0, 0, 1);
+  background: linear-gradient(135deg, hsla(210, 20%, 90%, 1), hsla(210, 20%, 95%, 1));
+}
+
+[data-theme='dark'] .weather-image-container {
+  background: linear-gradient(135deg, hsla(220, 20%, 15%, 1), hsla(220, 20%, 10%, 1));
+  border-color: hsla(0, 0%, 100%, 0.1);
+}
+
+.weather-card:hover .weather-image-container {
+  transform: scale(1.05) rotate(2deg);
+}
+
+.weather-real-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.weather-card:hover .weather-real-image {
+  transform: scale(1.15);
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.1), transparent);
+}
+
+.temp-section {
+  flex: 1;
+}
+
+.temperature {
+  font-family: 'Outfit', sans-serif;
+  font-size: 3.2rem;
+  font-weight: 800;
+  line-height: 0.9;
+  color: var(--text-main);
+  letter-spacing: -0.04em;
+}
+
+.temperature .unit {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-left: 2px;
+}
+
+.weather-condition {
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-top: 0.5rem;
+  text-transform: capitalize;
+}
+
+.card-footer {
+  display: flex;
+  gap: 0.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  position: relative;
+  z-index: 1;
+}
+
+.stat-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.75rem 0.25rem;
+  border-radius: 1rem;
+  transition: background 0.3s ease;
+}
+
+.stat-item:hover {
+  background: hsla(0, 0%, 100%, 0.3);
+}
+
+[data-theme='dark'] .stat-item:hover {
+  background: hsla(0, 0%, 100%, 0.05);
+}
+
+.stat-icon {
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+}
+
+.stat-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  font-family: 'Outfit', sans-serif;
+}
+
+.stat-label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+}
+
+/* --- Skeleton Card --- */
+.skeleton-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: 2rem;
+  padding: 1.75rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.skeleton-line {
+  border-radius: 12px;
+  background: linear-gradient(90deg,
+    var(--border) 25%,
+    var(--bg-sidebar) 50%,
+    var(--border) 75%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.skeleton-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.skeleton-body {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.skeleton-footer {
+  display: flex;
+  gap: 0.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}

@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Colors - Light Mode */
+  --primary: hsl(230, 85%, 60%);
+  --primary-hover: hsl(230, 85%, 55%);
+  --bg-body: hsl(220, 33%, 98%);
+  --bg-card: hsla(0, 0%, 100%, 0.7);
+  --bg-sidebar: hsl(220, 33%, 96%);
+  --text-main: hsl(220, 40%, 12%);
+  --text-muted: hsl(220, 15%, 40%);
+  --border: hsla(220, 20%, 88%, 0.7);
+  --accent-yellow: hsl(45, 100%, 50%);
+  
+  /* Glassmorphism Defaults */
+  --glass-bg: hsla(0, 0%, 100%, 0.45);
+  --glass-border: hsla(0, 0%, 100%, 0.5);
+  --glass-shadow: 0 12px 40px -4px rgba(0, 0, 0, 0.05);
+  --glass-blur: 20px;
+
+  /* Spacing & Radii */
+  --radius-2xl: 2rem;
+  --radius-xl: 1.5rem;
+  --radius-lg: 1rem;
+  --radius-md: 0.75rem;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 10px 30px -4px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 20px 48px -8px rgba(0, 0, 0, 0.12);
+  
+  /* Transitions */
+  --transition: all 0.4s cubic-bezier(0.2, 0, 0, 1);
+}
+
+[data-theme='dark'] {
+  --primary: hsl(230, 85%, 68%);
+  --bg-body: hsl(220, 40%, 4%);
+  --bg-card: hsla(220, 40%, 10%, 0.6);
+  --bg-sidebar: hsl(220, 40%, 6%);
+  --text-main: hsl(220, 33%, 98%);
+  --text-muted: hsl(220, 15%, 75%);
+  --border: hsla(220, 20%, 18%, 0.7);
+  
+  --glass-bg: hsla(220, 40%, 8%, 0.45);
+  --glass-border: hsla(220, 20%, 25%, 0.3);
+  --glass-shadow: 0 12px 40px -4px rgba(0, 0, 0, 0.3);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  line-height: 1.5;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease;
+}
+
+h1, h2, h3, .logo-text {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+}
+
+/* Glassmorphism Utility */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--radius-xl);
+}
+
+/* Shimmer Animation */
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, 
+    var(--border) 25%, 
+    var(--bg-sidebar) 50%, 
+    var(--border) 75%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+/* Modern Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: var(--transition);
+}
+
+input {
+  outline: none;
+  transition: var(--transition);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}

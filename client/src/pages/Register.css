@@ -1,0 +1,32 @@
+/* Register page shares auth-page styles from Login.css */
+/* Additional register-specific overrides can go here */
+
+.password-strength {
+  display: flex;
+  gap: 4px;
+  margin-top: 0.3rem;
+}
+
+.password-strength-bar {
+  height: 3px;
+  flex: 1;
+  border-radius: 3px;
+  background: var(--border);
+  transition: var(--transition);
+}
+
+.password-strength-bar.active {
+  background: var(--primary);
+}
+
+.password-strength-bar.weak {
+  background: hsl(0, 80%, 60%);
+}
+
+.password-strength-bar.medium {
+  background: hsl(40, 90%, 50%);
+}
+
+.password-strength-bar.strong {
+  background: hsl(140, 70%, 45%);
+}

@@ -1,0 +1,107 @@
+.add-city-form {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  max-width: 600px;
+}
+
+.search-input-wrapper {
+  flex: 1;
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.search-input-wrapper:focus-within {
+  transform: translateY(-2px);
+}
+
+.search-icon {
+  position: absolute;
+  left: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.search-input {
+  width: 100%;
+  padding: 1rem 1rem 1rem 3.25rem;
+  border-radius: 16px;
+  border: 2px solid var(--border);
+  background: var(--glass-bg);
+  color: var(--text-main);
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.search-input:focus {
+  border-color: var(--primary);
+  background: white;
+  box-shadow: 0 12px 24px -8px hsla(230, 85%, 60%, 0.15);
+}
+
+[data-theme='dark'] .search-input:focus {
+  background: hsla(220, 40%, 15%, 0.4);
+}
+
+.search-input::placeholder {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.add-city-btn {
+  padding: 0.75rem 2rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--primary), hsl(250, 85%, 60%));
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 8px 20px -4px hsla(230, 85%, 60%, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  white-space: nowrap;
+}
+
+.add-city-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px -4px hsla(230, 85%, 60%, 0.4);
+}
+
+.add-city-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(0.5);
+}
+
+.btn-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 480px) {
+  .add-city-form {
+    flex-direction: column;
+  }
+
+  .add-city-btn {
+    justify-content: center;
+  }
+}
